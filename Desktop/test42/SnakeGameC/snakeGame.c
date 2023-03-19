@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
 
 void create_gameboard(int*** gameboard_pointer, int width, int height)
@@ -60,6 +61,30 @@ void display_gameboard(int*** gameboard_pointer, int width, int height)
     }
 }
 
+
+void fruit_spawner(int*** gameboard_pointer, int width, int height)
+{
+    int xpos_loop;
+    int ypos_loop;
+
+    int fruitpos_x = width + 1;
+    int fruitpos_y = height + 1;
+
+    while (fruitpos_x > width || fruitpos_x < width)
+    {
+        fruitpos_x = getpid()/1000;
+    }
+
+    while (fruitpos_y > height || fruitpos_x < height)
+    {
+        fruitpos_y = getpid()/1000;
+    }
+    gameboard_pointer[ypos_loop][xpos_loop] = malloc(sizeof(int));
+    *(gameboard_pointer[ypos_loop][xpos_loop]) = 2;
+}
+
+
+
 int main(void)
 {
     int width = 30;
@@ -72,6 +97,7 @@ int main(void)
     }
 
     create_gameboard(gameboard, width, height);
+    fruit_spawner(gameboard, width, height);
     display_gameboard(gameboard, width, height);
 
     // Libérer l'espace mémoire alloué pour chaque pointeur et chaque élément du tableau
